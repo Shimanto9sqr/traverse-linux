@@ -77,8 +77,14 @@ Identify unused partition -> Create partition -> Register with Kernel -> Format 
 ```
 ```
 parted /dev/sdd mklabel gpt mkpart primary 2048s 10G
+```
+```
 udevadm settle
+```
+```
 mkfs -t xfs /dev/sdd1
+```
+```
 mkdir /projectdata
 ```
 > Add `UUID` `mountpoint` `fs` `mode` `dump` `filecheck priority` to /etc/fstab for persistence
@@ -87,15 +93,61 @@ mkdir /projectdata
 ```
 vim /etc/fstab
 ```
+```
 systemctl daemon-reload
+```
 ```
 mount /projectdata
 ```
+```
 reboot
+```
 ```
 lsblk/df -hT
 ```
-```
-
 
 ## Create two LVM using two unused disk
+> Need root privilege
+>Create partition -> set lvm on -> create pv -> create vg -> create lv -> format each lv -> edit /etc/fstab -> mount fs_mountpoint
+
+```
+parted /dev/sda mklabel gpt mkpart lvm_part1 2048s 100%
+```
+```
+parted /dev/sda1 set lvm on
+```
+pvcreate /dev/sda1
+```
+>Repeat for `/dev/sdb`
+```
+vgcreate vg_training /dev/sda1 /dev/sdb1
+```
+```
+lvcreate -L 6G -n lv_data vg_training
+```
+```
+lvcreate -L 4G -n lv_logs vg_training
+```
+```
+mkfs -t xfs /dev/vg_training/lv_data
+```
+```
+mkfs -t xfs /dev/vg_training/lv_logs
+```
+> Get UUID's of lvm using `blkid` add them to `/etc/fstab`
+>Reload daemon to make /etc/fstab update effective
+```
+systemctl daemon-reload
+```
+```
+mkdir /data /logs
+```
+```
+mount /data
+```
+```
+mount /logs
+```
+
+## Extend LVM
+
