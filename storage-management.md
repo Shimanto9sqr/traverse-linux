@@ -24,7 +24,7 @@ nvme0n1                 259:0    0   10G  0 disk
 ```
 lsblk -fs
 ```
-**`du` to see File system space usage**
+### **`du` to see File system space usage**
 ```
 du -hT
 ```
