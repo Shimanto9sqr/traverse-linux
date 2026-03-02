@@ -1,6 +1,6 @@
 ## Storage related commands
 
-**`lsblk` to list the block devices**
+### **`lsblk` to list the block devices**
 ```
 lsblk
 ```
@@ -40,7 +40,7 @@ tmpfs                           tmpfs     1.0M     0  1.0M   0% /run/credentials
 /dev/sdd1                       xfs        10G  228M  9.8G   3% /projectdata
 ```
 
-###`parted` to create partition
+### **`parted` to create partition**
 > Used in standard partitioning
 > Create partition table
 > both GPT and MBR
@@ -53,11 +53,11 @@ parted /dev/sdX mklabel type mkpart partition_type name fs_type start end
 > fs_type: xfs, ext4, ntfs -optional
 > use `rm` to remove a partition
 
-**`mkfs` formatting the partition**
+### **`mkfs` formatting the partition**
 ```
 mkfs -t type /dev/sdXp
 ```
-**`mount` to mount filesystem with devices**
+### **`mount` to mount filesystem with devices**
 >need root priv
 ```
 mount mount_point
@@ -68,5 +68,5 @@ mount mount_point
 ### **`pvcreate` `vgcreate` `lvcreate` `vgextend` `lvextend` `xfs_growfs` `resize2fs` `lvremove` `vgdisplay` `pvdisplay` `lvdisplay` `vgs`**
 
 ## NFS Server
-**`nfs-utils` `exportfs`**
+### **`nfs-utils` `exportfs`**
 
