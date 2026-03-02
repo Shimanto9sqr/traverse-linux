@@ -38,4 +38,4 @@ sudo parted /dev/sda mklabel gpt
 ```bash
 sudo parted /dev/sda mkpart primary xfs **2048s** **100%**
 ```
-to be continued...
+==to be continued...==
