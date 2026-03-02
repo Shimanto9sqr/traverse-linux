@@ -1,6 +1,6 @@
 ## Storage related commands
 
-###`lsblk` to list the block devices
+**`lsblk` to list the block devices**
 ```
 lsblk
 ```
@@ -24,7 +24,7 @@ nvme0n1                 259:0    0   10G  0 disk
 ```
 lsblk -fs
 ```
-###`du` to see File system space usage
+**`du` to see File system space usage**
 ```
 du -hT
 ```
@@ -53,11 +53,11 @@ parted /dev/sdX mklabel type mkpart partition_type name fs_type start end
 > fs_type: xfs, ext4, ntfs -optional
 > use `rm` to remove a partition
 
-###`mkfs` formatting the partition
+**`mkfs` formatting the partition**
 ```
 mkfs -t type /dev/sdXp
 ```
-###`mount` to mount filesystem with devices
+**`mount` to mount filesystem with devices**
 >need root priv
 ```
 mount mount_point
@@ -65,4 +65,8 @@ mount mount_point
 
 ## Logical Volume Manager 
 
-###`pvcreate` `vgcreate` `lvcreate` `vgextend` `lvextend` `xfs_growfs` `resize2fs` `lvremove` `vgdisplay` `pvdisplay` `lvdisplay` `vgs`
+### **`pvcreate` `vgcreate` `lvcreate` `vgextend` `lvextend` `xfs_growfs` `resize2fs` `lvremove` `vgdisplay` `pvdisplay` `lvdisplay` `vgs`**
+
+## NFS Server
+**`nfs-utils` `exportfs`**
+
