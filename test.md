@@ -13,7 +13,7 @@ nvme0n1         259:0    0   10G  0 disk
  ├─ol_web-root   ...
  └─ol_web-swap   ...
 ```
-
+==important==
 **Note:** The disk `sda` is currently unused.
 
 ## Attempted Operations on `/dev/sda`
