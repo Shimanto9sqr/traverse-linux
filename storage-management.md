@@ -1,11 +1,11 @@
 ## Storage related commands
 
 **`lsblk` to list the block devices**
-> Displays block devices, partition, size, RM(removable), RO(Read Only), Mountpoints
 ```
 lsblk
 ```
 Output:
+> Displays block devices, partition, size, RM(removable), RO(Read Only), Mountpoints
 ```
 NAME                    MAJ:MIN RM  SIZE RO TYPE MOUNTPOINTS
 sda                       8:0    0   10G  0 disk 
@@ -25,11 +25,11 @@ nvme0n1                 259:0    0   10G  0 disk
 lsblk -fs
 ```
 **`du` to see File system space usage**
-> Displays Filesystems, Type, Used space, Available Space, percentage, Mount points/ or from where the virtual devices are accessible
-
-```du -hT
+```
+du -hT
 ```
 Output:
+> Displays Filesystems, Type, Used space, Available Space, percentage, Mount points/ or from where the virtual devices are accessible
 ```
 Filesystem                      Type      Size  Used Avail Use% Mounted on
 /dev/mapper/ol_web-root         xfs       8.0G  5.9G  2.2G  74% /
@@ -44,7 +44,6 @@ tmpfs                           tmpfs     1.0M     0  1.0M   0% /run/credentials
 > Used in standard partitioning
 > Create partition table
 > both GPT and MBR
-> 
 *need root privilege*
 ```
 parted /dev/sdX mklabel type mkpart partition_type name fs_type start end
