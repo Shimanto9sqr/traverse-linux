@@ -53,7 +53,7 @@ parted /dev/sdX mklabel type mkpart partition_type name fs_type start end
 > fs_type: xfs, ext4, ntfs -optional
 > use `rm` to remove a partition
 
-### **`mkfs` formatting the partition**
+### **`mkfs` to format the partition**
 ```
 mkfs -t type /dev/sdXp
 ```
@@ -70,3 +70,27 @@ mount mount_point
 ## NFS Server
 ### **`nfs-utils` `exportfs`**
 
+## Create standart partition
+> Need root privilege
+```
+Identify unused partition -> Create partition -> Register with Kernel -> Format with xfs fs -> mount
+```
+```
+parted /dev/sdd mklabel gpt mkpart primary 2048s 10G
+udevadm settle
+mkfs -t xfs /dev/sdd1
+mkdir /projectdata
+```
+> Add `UUID` `mountpoint` `fs` `mode` `dump` `filecheck priority` to /etc/fstab for persistence
+> find `UUID` using `blkid /dev/sdXn`
+
+```
+vim /etc/fstab
+systemctl daemon-reload
+mount /projectdata
+reboot
+lsblk/df -hT
+```
+
+
+## Create two LVM using two unused disk
