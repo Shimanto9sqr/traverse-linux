@@ -86,10 +86,15 @@ mkdir /projectdata
 
 ```
 vim /etc/fstab
+```
 systemctl daemon-reload
+```
 mount /projectdata
+```
 reboot
+```
 lsblk/df -hT
+```
 ```
 
 
