@@ -226,3 +226,41 @@ mount | grep /nfs/data
 
 
 ~ EOF ~
+
+## Check VGS and LVS
+
+```
+root@web:~# vgs
+  VG          #PV #LV #SN Attr   VSize   VFree 
+  ol_web        1   2   0 wz--n-  <9.00g     0 
+  vg_training   3   2   0 wz--n- <29.99g <8.99g
+root@web:~# pvs
+  PV             VG          Fmt  Attr PSize   PFree 
+  /dev/nvme0n1p3 ol_web      lvm2 a--   <9.00g     0 
+  /dev/sda1      vg_training lvm2 a--  <10.00g     0 
+  /dev/sdb1      vg_training lvm2 a--  <10.00g     0 
+  /dev/sdc1      vg_training lvm2 a--  <10.00g <8.99g
+root@web:~# lvs
+  LV      VG          Attr       LSize  Pool Origin Data%  Meta%  Move Log Cpy%Sync Convert
+  root    ol_web      -wi-ao---- <8.00g                                                    
+  swap    ol_web      -wi-ao----  1.00g                                                    
+  lv_data vg_training -wi-ao---- 11.00g                                                    
+  lv_logs vg_training -wi-ao---- 10.00g      
+
+```
+```
+oot@web:~# df -hT
+Filesystem                      Type      Size  Used Avail Use% Mounted on
+/dev/mapper/ol_web-root         xfs       8.0G  5.9G  2.2G  74% /
+devtmpfs                        devtmpfs  4.0M     0  4.0M   0% /dev
+tmpfs                           tmpfs     758M     0  758M   0% /dev/shm
+tmpfs                           tmpfs     303M  6.3M  297M   3% /run
+tmpfs                           tmpfs     1.0M     0  1.0M   0% /run/credentials/systemd-journald.service
+/dev/nvme0n1p2                  xfs       960M  434M  527M  46% /boot
+/dev/sdd1                       xfs        10G  228M  9.8G   3% /projectdata
+/dev/mapper/vg_training-lv_data xfs        11G  248M   11G   3% /data
+/dev/mapper/vg_training-lv_logs xfs        10G  228M  9.8G   3% /logs
+tmpfs                           tmpfs     152M   72K  152M   1% /run/user/42
+tmpfs                           tmpfs     152M   56K  152M   1% /run/user/1000
+
+```
