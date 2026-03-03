@@ -70,7 +70,7 @@ mount mount_point
 ## NFS Server
 ### **`nfs-utils` `exportfs`**
 
-## Create standart partition
+## Task1 - Create standart partition
 > Need root privilege
 ```
 Identify unused partition -> Create partition -> Register with Kernel -> Format with xfs fs -> mount
@@ -106,7 +106,7 @@ reboot
 lsblk/df -hT
 ```
 
-## Create two LVM using two unused disk
+## Task2 - Create two LVM using two unused disk
 > Need root privilege
 >Create partition -> set lvm on -> create pv -> create vg -> create lv -> format each lv -> edit /etc/fstab -> mount fs_mountpoint
 
@@ -150,5 +150,80 @@ mount /data
 mount /logs
 ```
 
-## Extend LVM
+## Task3 - Extend a LVM
+
+>Create new PV if necessary -> Extend VG -> Extend LV -> Expand FS
+```
+vgextend vg_training /dev/sdXn
+```
+```
+lvextend -L +6G /dev/vg_training/lv_logs
+```
+> To expand xfs FS
+```
+xfs_growfs /logs
+```
+
+## Task4 - NFS Configuration
+
+> Install nfs-utils on host server and client
+> Enable nfs-server and rpcbind service
+> Edit /etc/exports to configure sharing
+> Change ownership of the directory to allow anyone on the client system to read and write
+
+>Need root privilege
+### Setup NFS server on host
+```
+dnf install nfs-utils
+```
+```
+systemctl enable --now nfs-server
+```
+```
+systemctl enable --now rpcbind
+```
+> On /etc/exports
+```
+/path/to/shared_dir client_ip(rw,sync,no_subtree_check)
+```
+```
+> Set Ownership
+```
+chown nobody:nobody /path/to/shared_dir \
+chmod 755 /path/to/shared_dir
+```
+```
+exportfs -r
+```
+>Disable Firewall and SELinux
+```
+systemctl stop firewalld
+```
+```
+systemctl disable firewalld
+```
+> disable SElinux on /etc/selinux/config
+```
+SELINUX=disable
+```
+```
+reboot
+```
+> Configure nfs-utils on client
+```
+dnf install nfs-utils
+```
+```
+mount -t nfs 192.168.122.17:/data /nfs/data
+```
+> Edit /etc/fstab for persistence
+```
+192.168.98.131:/data                      /nfs/data               nfs     rw        0 0
+```
+> Check mount status
+```
+mount | grep /nfs/data
+```
+
+
 
