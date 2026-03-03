@@ -186,7 +186,6 @@ systemctl enable --now rpcbind
 ```
 /path/to/shared_dir client_ip(rw,sync,no_subtree_check)
 ```
-```
 > Set Ownership
 ```
 chown nobody:nobody /path/to/shared_dir \
