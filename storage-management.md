@@ -116,6 +116,7 @@ parted /dev/sda mklabel gpt mkpart lvm_part1 2048s 100%
 ```
 parted /dev/sda1 set lvm on
 ```
+```
 pvcreate /dev/sda1
 ```
 >Repeat for `/dev/sdb`
