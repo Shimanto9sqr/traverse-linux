@@ -76,7 +76,10 @@ mount mount_point
 Identify unused partition -> Create partition -> Register with Kernel -> Format with xfs fs -> mount
 ```
 ```
-parted /dev/sdd mklabel gpt mkpart primary 2048s 10G
+parted /dev/sdd mklabel gpt
+```
+```
+parted /dev/sdd mkpart primary 2048s 10G
 ```
 ```
 udevadm settle
