@@ -154,3 +154,47 @@
 
 #firewall-cmd --reload
 ```
+
+- On router vm [to-pass-traffic-across-interfaces]
+
+```
+#firewall-cmd --permanent --zone=public --add-forward 
+
+#firewall-cmd --reload
+```
+
+## Check firewall security policy
+
+- From client vm
+```
+#curl -i 192.168.20.20:80
+#curl -i 192.168.20.20:443
+
+#mysql -u webuser -p -h 192.168.30.30
+```
+![Access-web-content](./asset/clientToweb.jpeg)
+
+
+- From web server
+
+```
+#ssh root@192.168.30.30
+
+#mysql -u webuser -p -h 192.168.30.30
+
+```
+![Access-db-from-web](./asset/webTodb.jpeg)
+
+- From admin workstation
+
+```
+[router-vm]
+#ssh root@192.168.20.1
+
+[web-server]
+#ssh root@192.168.20.20
+
+[db-server]
+#ssh root@192.168.30.30
+```
+![admin-ssh-access](./asset/adminToSSH.jpeg)
