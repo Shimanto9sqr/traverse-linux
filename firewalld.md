@@ -58,9 +58,9 @@ Zones define the "perimeter." An interface or source IP belongs to exactly one z
 # Ensure traffic from this IP always hits the 'trusted' zone
 
 
-sudo firewall-cmd --permanent --zone=trusted --add-source=192.168.10.50
-```
 
+```
+sudo firewall-cmd --permanent --zone=trusted --add-source=192.168.10.50
 
 ```
 
