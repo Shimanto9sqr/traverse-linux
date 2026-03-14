@@ -1,12 +1,10 @@
-# Firewalld and Firewall-Cmd: A Comprehensive Network Security Guide
-
-This documentation provides a progressive learning path for managing Linux firewalls using `firewalld`. It transitions from basic concepts to advanced multi-subnet routing scenarios.
+# Firewalld and Firewall-Cmd
 
 ---
 
 ## 1. Introduction to Firewalld
 
-`firewalld` is a dynamic firewall manager that uses **Zones** to categorize network traffic. Unlike older tools, it allows configuration changes without dropping active connections.
+`firewalld` is a dynamic firewall manager that uses **Zones** to categorize network traffic.
 
 ### Key Components
 
@@ -72,7 +70,7 @@ sudo firewall-cmd --permanent --zone=trusted --add-source=192.168.10.50
 
 This is the most common way to allow traffic.
 
-### Services (The Human-Friendly Way)
+### By Services
 
 ```bash
 # Scenario: Allow web traffic on a standard server
@@ -101,7 +99,7 @@ Rich Rules allow you to combine sources, ports, and logging into a single rule.
 
 ### Scenario: Admin-Only Database Access
 
-You want to allow only the **Admin VM** (`192.168.10.20`) to access the **DB Server** (`3306`), while rejecting all other IPs even if they have the database password.
+Allow only the **Admin VM** (`192.168.10.20`) to access the **DB Server** (`3306`), while rejecting all other IPs even if they have the database password.
 
 ```bash
 # Apply on the DB Server
@@ -153,5 +151,3 @@ sudo firewall-cmd --permanent --direct --add-rule ipv4 filter FORWARD 0 -m state
 | **Changes not working** | Applied permanently but didn't reload | `firewall-cmd --reload` |
 
 ---
-
-Would you like me to generate a **bash script** that automatically configures these rules for your 5-VM project structure?
