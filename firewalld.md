@@ -31,7 +31,7 @@ Every `firewall-cmd` command follows a standard structure.
 **Essential Commands:**
 
 ```bash
-#000000
+`#000000`
 # Check status
 sudo systemctl status firewalld
 
