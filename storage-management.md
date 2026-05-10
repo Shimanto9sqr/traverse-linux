@@ -24,9 +24,9 @@ nvme0n1                 259:0    0   10G  0 disk
 ```
 lsblk -fs
 ```
-### **`du` to see File system space usage**
+### **`df` to see File system space usage**
 ```
-du -hT
+df -hT
 ```
 Output:
 > Displays Filesystems, Type, Used space, Available Space, percentage, Mount points/ or from where the virtual devices are accessible
